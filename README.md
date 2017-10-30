@@ -22,5 +22,4 @@ Drawing app which lets you draw and save your works.
 * Charts showing statistics | Optional (most successful drawings)
 * (Optional) See drawings of other users.
 * (Optional) Ratings for the drawings.
-* 
 
