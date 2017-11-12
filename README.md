@@ -15,12 +15,12 @@ Application having the following:
 * animations
 
 Project theme:
-Drawing app which lets you draw and save your works.
+Music chart app which lets you rate songs.
 
 * Sign-up and log-in required.
-* Displaying the list of drawings.
+* Displaying the list of songs.
 * Premium user functionalities
 * Charts showing statistics | Optional (most successful drawings)
-* (Optional) See drawings of other users.
-* (Optional) Ratings for the drawings.
+* (Optional) See preferences of other users.
+* (Optional) Ratings for the songs.
 
