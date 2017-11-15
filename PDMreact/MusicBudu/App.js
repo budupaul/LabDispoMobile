@@ -4,43 +4,47 @@ import {email} from 'react-native-communications'
 import { StackNavigator } from 'react-navigation';
 
 export class App extends React.Component {
+	/*state = {
+      myState: 'Lorem ipsum do'
+   }
+   updateState = () => {
+      this.setState({ myState: 'The state is updated' })
+   }*/
+   constructor(props){
+	   super(props);
+   }
   render() {
 
-	var song1 = new Song('Maria','Magdalena'); 
-	var song2 = new Song('A','B');
-	var song3 = new Song('C','D');
-	var song4 = new Song('Peste','flambat');	
-	var music = [];
-	music.push(song1);
-	music.push(song2);
-	music.push(song3);
-	music.push(song4);
-	var text = song1.render();
-	var payments = [];
+	
+	var viewText = [];
+	//console.log(this.props.navigation.state.params);
+	var music = this.props.navigation.state.params.music;
 	const { navigate } = this.props.navigation;
 		for(let i = 0; i < music.length; i++){
 
-			payments.push(
+			viewText.push(
 				<View key = {i}>
 					<Button
-				onPress={() => navigate('Song', {title: 'Mi', artist: 'Mi'})}
-				title={music[i].state.title + '  By:' + music[i].state.artist}
+				onPress={() => this.props.navigation.navigate('Song', {music: music, index: i})}
+				title={music[i].title + ' By: ' + music[i].artist}
 				color="#841584"
 				accessibilityLabel="Learn more about this purple button"
 			/>
 				</View>
 			)
+			console.log(music[i]);
 		}
 	return (
 			<View>
-			{ payments }
+			{ viewText }
 			</View>
 		)
   }
   
-  fuckMe(){
-	  this.navigate('Song');
+  setMail(text){
+	  
   }
+  
 }
 
 const styles = StyleSheet.create({
@@ -51,16 +55,39 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
+export class SongModel{
+	artist = 'Lal';
+	title = 'Bal';
+	constructor(title, artist){
+		this.artist = artist;
+		this.title = title;
+	}
+	
+	setTitle(title){
+		this.title = title;
+		console.log(title);
+	}
+	setArtist(artist){
+		this.artist = artist;
+	}
+}
+export class SongList{
+	list = [];
+	constructor(){
+		
+	}
+	push( song ){
+		this.list.push(song);
+	}
+}
 export class Song extends React.Component{
 	state = {artist: 'Lala', title:'Band'}
 	//static navigationOptions = ({ navigation }) => ({
     //title: `Chat with ${navigation.state.params.title}`,
   //});
-	constructor(tit, art){
-		super();
-		
-		
+	constructor(props){
+		super(props);
+		const {navigation} = this.props.navigation;
 		/*if (typeof tit === 'string' || tit instanceof String){
 			this.state = {
 			artist: art.toString(),
@@ -71,6 +98,7 @@ export class Song extends React.Component{
 			artist: art.toString(),
 			title: tit.toString()}
 		}*/
+		/*
 		this.state = {
 			artist: art.toString(),
 			title: tit.toString()}
@@ -78,54 +106,57 @@ export class Song extends React.Component{
 			this.state = {
 			artist: 'Mad',
 			title: 'Mad'}
-		}
+		}*/
 	}
 	render(){
 		//const { params } = this.props.navigation.state;
+		//{"navigation":{"state":{"params":{"title":
+		//	81370-2","routeName":"Song"}}}
+		var music = this.props.navigation.state.params.music;
+		var index = this.props.navigation.state.params.index;
+		console.log(this.props.navigation.state.params);
 		return (
 			<View>
-			<Text>{this.state.title}</Text>
-			<Text>{this.state.artist}</Text>
+			<Text>{music[index].title}</Text>
+			<Text>{music[index].artist}</Text>
+			<Text></Text>
+			<Text>Edit title:</Text>
+			<TextInput onChangeText={(text) => music[index].setTitle({text}.text)} style={styles.input} editable={true}/>
+
+			<Text></Text>
+			<Text>Edit artist:</Text>
+			<TextInput onChangeText={(text) => music[index].setArtist({text}.text)} style={styles.input} editable={true}/>
+			
 			<Button
-              onPress={() => this.props.navigation.navigate('App')}
+              onPress={() => this.props.navigation.navigate('App', {music: music})}
               title="Go home"
             />
 			</View>
 		  )
 	}
-	
-	text(){
-		
-		return (
-			<View>
-			<Text>{this.title}</Text>
-			<Text>{this.artist}</Text>
-		  </View>
-		  )
-	}
-	
-	edit(){
-		return (
-			<View style={styles.container}>
-			<Text>{this.title}</Text>
-			<Text>{this.artist}</Text>
-			
-		  </View>
-		  )
-	}
+
 }
 export class Music extends React.Component {
+	music = new SongList();
     constructor(props) {
         super(props);
         this.state = {
             mail: "",
             password: ""
         }
+		var song1 = new SongModel('Maria','Magdalena'); 
+		var song2 = new SongModel('A','Bjj');
+		var song3 = new SongModel('C','D');
+		var song4 = new SongModel('Peste','flambat');
+		this.music.push(song1);
+		this.music.push(song2);
+		this.music.push(song3);
+		this.music.push(song4);
     }
  
      loginButtonPressed(){
         Alert.alert("sending email..");
-        email(['aslasldasdasd@asdasd.com'], null, null, "react-native mail test", "loged in at: " + new Date().toDateString());
+        email(['aslasldasdasd@asdasd.com'], null, null, "react-native mail test", "logged in at: " + new Date().toDateString());
      }
     setMail(text){
          this.state.mail = text;
@@ -135,6 +166,7 @@ export class Music extends React.Component {
     }
  
     render() {
+		//console.log(this.music);
 		const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
@@ -148,7 +180,7 @@ export class Music extends React.Component {
                     <Text style={styles.button}>Submit</Text>
                 </Button>
 				<Text></Text>
-				<Button onPress={() => navigate('App')}
+				<Button onPress={() => navigate('App', {music: this.music.list})}
                         title="Go to app">
                     <Text style={styles.button}>Submit</Text>
                 </Button>
