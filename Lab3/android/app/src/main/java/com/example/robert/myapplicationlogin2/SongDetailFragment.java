@@ -2,6 +2,7 @@ package com.example.robert.myapplicationlogin2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,11 +14,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import com.github.mikephil.charting.charts.PieChart;
 
+import com.github.mikephil.charting.data.PieData;
+
+import com.github.mikephil.charting.data.PieDataSet;
+
+import com.github.mikephil.charting.data.PieEntry;
+
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.example.robert.myapplicationlogin2.database.SongDatabase;
 import com.example.robert.myapplicationlogin2.model.SongItem;
 import com.example.robert.myapplicationlogin2.utils.ExecutorSingleton;
 
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -90,6 +100,24 @@ public class SongDetailFragment extends Fragment {
 
         // Show the dummy title as text in a TextView.
         if (mItem != null) {
+            PieChart pieChartRatings = (PieChart)rootView.findViewById(R.id.pieChartRatings);
+
+            pieChartRatings.setCenterText("This is a chart");
+
+            try {
+
+                pieChartRatings.setData(generatePieData());
+
+            } catch (ExecutionException e) {
+
+                e.printStackTrace();
+
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+
+            }
+
             final Runnable updateSongTask = new Runnable() {
                 @Override
                 public void run() {
@@ -179,5 +207,73 @@ public class SongDetailFragment extends Fragment {
         return rootView;
     }
 
+    private PieData generatePieData() throws ExecutionException, InterruptedException {
 
+//        Callable<List<MovieItem>> getMoviesTask = new Callable<List<MovieItem>>() {
+
+//            @Override
+
+//            public List<MovieItem> call() throws Exception {
+
+//                    return MovieDatabase.getInstance(getContext()).getMovieDao().loadAllMovies();
+
+//            }
+
+//        };
+
+//        Future<List<MovieItem>> futureMovies = executor.submit(getMoviesTask);
+
+//
+
+//        ArrayList<Integer> ratings = new ArrayList<>();
+
+//        for (int i = 0; i < 10; i++) {
+
+//            ratings.add(0);
+
+//        }
+
+        ArrayList<PieEntry> entries1 = new ArrayList<PieEntry>();
+
+//
+
+//        List<MovieItem> movies = futureMovies.get();
+
+//
+
+//        for(MovieItem m: movies){
+
+//            ratings.set(m.rating, ratings.get(m.rating));
+
+//        }
+
+
+
+        //TB added real data
+
+        for(int i = 0; i < 2; i++) {
+
+            entries1.add(new PieEntry((float) ((Math.random() * 60) + 40), "Half " + (i+1)));
+
+        }
+
+
+
+        PieDataSet ds1 = new PieDataSet(entries1, "Ratings distributed amongst movies");
+
+        ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        ds1.setSliceSpace(2f);
+
+        ds1.setValueTextColor(Color.WHITE);
+
+        ds1.setValueTextSize(12f);
+
+
+
+        PieData d = new PieData(ds1);
+
+        return d;
+
+    }
 }

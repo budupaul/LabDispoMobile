@@ -59,4 +59,12 @@
         android:layout_height="wrap_content"
         android:text="delete" />
 
+    <com.github.mikephil.charting.charts.PieChart
+
+        android:id="@+id/pieChartRatings"
+
+        android:layout_width="218dp"
+
+        android:layout_height="243dp" />
+
 </LinearLayout>
