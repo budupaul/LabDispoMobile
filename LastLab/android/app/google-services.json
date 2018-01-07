@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "589928182762",
+    "firebase_url": "https://android-budu.firebaseio.com",
+    "project_id": "android-budu",
+    "storage_bucket": "android-budu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589928182762:android:ac3396ee1049e300",
+        "android_client_info": {
+          "package_name": "com.example.budu.myapplicationlogin2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589928182762-5l26rvgjaj6d90i4n5ib059r02pl7s4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDViyK66VVTbuXIDY--CIyPNlmGwkXvmu8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

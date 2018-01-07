@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewDetailsSection1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DetailsSection1" />
+
+    <EditText
+        android:id="@+id/song_detail1"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="com.example.budu.myapplicationlogin2.SongDetailFragment" />
+
+    <TextView
+        android:id="@+id/textViewDetailsSection2"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:text="DetailsSection2" />
+
+    <EditText xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/song_detail2"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="com.example.budu.myapplicationlogin2.SongDetailFragment"
+    android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/ratingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rating : " />
+
+    <NumberPicker
+        android:id="@+id/numberPickerRating"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChartRatings"
+        android:layout_width="218dp"
+        android:layout_height="243dp" />
+
+    <Button
+        android:id="@+id/buttonSaveSongItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/buttonDeleteSongItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delete" />
+
+
+</LinearLayout>
